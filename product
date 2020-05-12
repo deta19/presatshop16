@@ -1,0 +1,35 @@
+//here i'll put code that can be sued with the product page
+
+Chnage size checkboxes with buttons
+
+//tpl  product.tpl
+{foreach from=$group.attributes key=id_attribute item=group_attribute}
+	<li><label for="uniform-{$groupName|escape:'html':'UTF-8'}">
+		<input type="radio" id="{$groupName|escape:'html':'UTF-8'}" class="attribute_radio" name="{$groupName|escape:'html':'UTF-8'}" value="{$id_attribute}" {if ($group.default == $id_attribute)} checked="checked"{/if} />
+		<span class="btndesign">{$group_attribute|escape:'html':'UTF-8'}</span>
+		</label>
+	</li>
+{/foreach}
+
+//css prodyct.css
+.attribute_radio {
+  display: none;
+}
+.btndesign {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #3f3f3f;
+    color: #fff;
+    font-size: 16px;
+}
+
+//js product.js
+$('.btndesign').click(function(e) {
+
+	$.uniform.update($('.attribute_radio').attr('checked',false));
+	$.uniform.update($(this).parent().find('.attribute_radio').attr('checked',true));
+	$(this).parent().find('.attribute_radio').trigger('click');
+
+});
+
+//end of change size checkboxes with buttons
